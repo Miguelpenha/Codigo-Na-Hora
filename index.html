@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <img class="img" id="img"/>
+    <h1>asd</h1>
+    <style style="display: block; white-space: pre;" contenteditable="true">
+        .img{
+            position: absolute;
+            left: 600px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 2px solid rgb(0, 17, 255);
+            transition-timing-function: linear;
+            transition-duration: 0.1s;
+        }
+        .img:hover{
+            border-radius: 25%;
+            border: 4px solid rgb(0, 17, 255);
+        }
+    </style>
+    <script>
+        async function avatar() {
+            const dado = await fetch('https://api.github.com/users/Miguelpenha')
+            const dadoJson = await dado.json()
+            return {
+                avatar: await dadoJson.avatar_url
+            }
+        }
+        avatar().then((avatar) => {
+            window.document.getElementById('img').src = avatar.avatar
+        })
+    </script>
+</body>
+</html>
